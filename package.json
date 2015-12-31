@@ -1,0 +1,23 @@
+{
+  "name": "praece-sails-model-addons",
+  "version": "0.1.0",
+  "description": "Addons to sails models.",
+  "main": "index.js",
+  "author": "Praece Consulting",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/praece/sails-model-addons"
+  },
+  "devDependencies": {
+    "sails": "~0.11.0"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^5.5.0",
+    "passport": "^0.3.2",
+    "passport-http-bearer": "^1.0.1",
+    "sails-util-mvcsloader": "~0.3.0"
+  },
+  "sails": {
+    "isHook": true
+  }
+}
