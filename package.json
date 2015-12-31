@@ -12,10 +12,12 @@
     "sails": "~0.11.0"
   },
   "dependencies": {
+    "is_js": "^0.7.4",
     "jsonwebtoken": "^5.5.0",
+    "lodash": "^3.10.1",
     "passport": "^0.3.2",
     "passport-http-bearer": "^1.0.1",
-    "sails-util-mvcsloader": "~0.3.0"
+    "sails-util-mvcsloader": "^0.3.0"
   },
   "sails": {
     "isHook": true
