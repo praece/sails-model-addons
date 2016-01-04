@@ -22,10 +22,7 @@ module.exports = function updateOneRecord (req, res) {
   var pk = actionUtil.requirePk(req);
   values.id = values.id || pk;
 
-  NestedUpdateService(values, Model)
-    .then(function(nestedUpdates) {
-      return Model.update(pk, values);
-    })
+  Model.update(pk, values)
     .then(function(updatedRecords) {
       return Model.findOne(pk).populateAll();
     })
