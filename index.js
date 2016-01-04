@@ -27,6 +27,9 @@ module.exports = function (sails) {
           return next();
         }
       }
+    },
+    configure: function () {
+      sails.config.paths.blueprints = __dirname + '/blueprints';
     }
   };
 };

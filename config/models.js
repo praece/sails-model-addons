@@ -1,4 +1,5 @@
-var is = require('is_js');
+var is      = require('is_js');
+var Promise = require('bluebird');
 
 module.exports.models = {
 	types: {
@@ -17,8 +18,28 @@ module.exports.models = {
   },
 
 	searchableFields: [],
-	search: require('../lib/search.js'),
-	searchCount: require('../lib/searchCount.js'),
+  defaultWhere: {},
+  nestedDelete: [],
+  backReference: [],
+  calculatedFields: [],
 
-  defaultWhere: {}
+  search: require('../lib/search.js'),
+  searchCount: require('../lib/searchCount.js'),
+
+  afterFind: function(records) {
+    return Promise
+      .all([
+        require('../lib/backReference.js').populate(records, this),
+        require('../lib/calculatedFields.js').populate(records, this)
+      ])
+      .then().return(records);
+  },
+
+  afterDestroy: function(records, cb) {
+    return require('../lib/nestedDelete.js').process(records, this)
+      .then(function() {
+        cb();
+      })
+      .catch(cb);
+  }
 };
