@@ -1,3 +1,5 @@
+var fs = require('fs');
+var _ = require('lodash');
 var routes = {};
 
 // Add a custom count route for each model.
