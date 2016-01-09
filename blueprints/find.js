@@ -39,12 +39,15 @@ module.exports = function findRecords (req, res) {
   }
 
   // Lookup for records that match the specified criteria.
-  Model.search(q)
+  var query = Model.search(q)
     .where(where)
     .limit(actionUtil.parseLimit(req))
     .skip(actionUtil.parseSkip(req))
-    .sort(actionUtil.parseSort(req))
-    .populateAll()
+    .sort(actionUtil.parseSort(req));
+
+  query = actionUtil.populateEach(query, req);
+
+  query
     .then(Model.afterFind)
     .then(function(records) {
       return res.ok(records);
