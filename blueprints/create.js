@@ -32,7 +32,7 @@ module.exports = function createRecord (req, res) {
 			return res.created(foundRecord);
 		})
 		.catch(function(err) {
-			LogService.error(err, Model.adapter.identity);
+			sails.log.error('Error during create.', {error: err, model: Model.adapter.identity});
 
 			if (!err.originalError || !_.isArray(err.originalError)) return res.negotiate(err);
 

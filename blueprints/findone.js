@@ -35,7 +35,7 @@ module.exports = function findOneRecord (req, res) {
       return res.ok(record);
     })
     .catch(function(err) {
-      LogService.error(err);
+      sails.log.error('Error during findOne.', {error: err, model: Model.adapter.identity, id: pk});
       
       return res.serverError(err);
     });

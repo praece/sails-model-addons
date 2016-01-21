@@ -30,7 +30,7 @@ module.exports = function updateOneRecord (req, res) {
       return res.ok(foundRecord);
     })
     .catch(function(err) {
-      LogService.error(err, Model.adapter.identity, pk);
+      sails.log.error('Error during update.', {error: err, model: Model.adapter.identity, id: pk});
 
       return res.negotiate(err);
     });

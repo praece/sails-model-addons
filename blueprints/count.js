@@ -40,7 +40,7 @@ module.exports = function countRecords (req, res) {
       return res.ok({count: count});
     })
     .catch(function(err) {
-      LogService.error(err);
+      sails.log.error('Error during count.', {error: err});
 
       return res.serverError(err);
     });
