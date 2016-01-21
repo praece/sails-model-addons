@@ -53,7 +53,7 @@ module.exports = function findRecords (req, res) {
       return res.ok(records);
     })
     .catch(function(err) {
-      sails.log.error('Error during findRecords.', {error: err, Model.adapter.identity, where: where});
+      sails.log.error('Error during findRecords.', {error: err, model: Model.adapter.identity, where: where});
       
       return res.serverError(err);
     });
